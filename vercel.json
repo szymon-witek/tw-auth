@@ -1,0 +1,9 @@
+{
+    "outputDirectory": "dist/authenticator-app-front",
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
+}
