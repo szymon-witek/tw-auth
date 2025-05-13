@@ -1,0 +1,23 @@
+<form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Description:</label>
+      <input type="text" formControlName="description" />
+    </div>
+  
+    <div>
+      <label>Date:</label>
+      <input type="date" formControlName="localDate" />
+    </div>
+  
+    <div>
+      <label>Allowed Player IDs (comma separated):</label>
+      <input
+        type="text"
+        (input)="onAllowedPlayersChange($event)"
+        placeholder="player1,player2,player3"
+      />
+    </div>
+  
+    <button type="submit" [disabled]="!scheduleForm.valid">Create Schedule</button>
+  </form>
+  

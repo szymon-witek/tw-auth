@@ -1,0 +1,360 @@
+
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+}
+
+.tabs button {
+  padding: 0.5rem 1rem;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.tabs button.active {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.tabs button:hover {
+  background-color: #9fa8da;
+}
+
+
+.dashboard-container {
+  padding: 30px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  
+  color: #a5c9ea;
+  font-family: 'Figtree' !important;
+
+}
+
+.mat-mdc-header-cell {
+  font-family: 'Figtree' !important;
+
+
+}
+.mat-mdc-cell {
+  font-family: 'Figtree' !important;
+}
+
+
+
+
+
+/* Apply to all rows */
+.mat-mdc-row {
+  background-color: #fff; /* Default row background color */
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+  font-family: 'Figtree' !important;
+
+}
+
+/* Hover effect for all rows */
+.mat-mdc-row:hover {
+  background-color: #eaf4ff; /* Light blue background on hover */
+  cursor: pointer;
+  font-family: 'Figtree' !important;
+
+}
+/* Late row styles */
+tr.late-row {
+  background-color: #fff2f2;
+  font-family: 'Figtree' !important;
+}
+
+tr.late-row:hover {
+  background-color: #ffe6e6;
+  font-family: 'Figtree' !important;
+}
+
+
+
+.search-input {
+  padding: 8px;
+  width: 250px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Figtree' !important;
+  font-size: 14px;
+}
+
+.clear-button {
+  font-family: 'Figtree' !important;
+  font-weight: 500;
+}
+
+
+button[mat-button] {
+  background-color: #1976d2;
+  color: white;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
+  transition: all 0.3s ease;
+  font-family: 'Figtree' !important;
+
+}
+
+.disabled {
+  pointer-events: none; /* block click */
+  opacity: 0.5;         /* make it look disabled */
+}
+
+button[mat-button]:hover {
+  background-color: #1565c0;
+  box-shadow: 0 4px 10px rgba(21, 101, 192, 0.4);
+  font-family: 'Figtree' !important;
+
+}
+
+span {  
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #e53935;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: 'Figtree' !important;
+
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Table już nie potrzebuje własnego tła, radiusa itd. */
+.mat-mdc-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+/* Stylowanie samego paginatora */
+.mat-mdc-paginator-outer-container {
+  background-color: #fff;
+  font-family: 'Figtree' !important;
+
+}
+
+
+
+::ng-deep .mat-mdc-paginator-container {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  font-family: 'Figtree', sans-serif;
+}
+
+
+/* Select na Items per page */
+.mat-mdc-paginator-page-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Figtree' !important;
+
+}
+
+.mat-mdc-paginator-page-size-label {
+  font-size: 13px;
+  color: #666;
+  font-family: 'Figtree' !important;
+
+}
+
+/* Paginator buttons */
+.mat-mdc-paginator-range-actions button {
+  color: #1976d2; /* primary color */
+  font-family: 'Figtree' !important;
+
+}
+
+.mat-mdc-paginator-range-actions button.mat-mdc-button-disabled {
+  color: #ccc;
+  font-family: 'Figtree' !important;
+
+}
+
+/* Range label */
+.mat-mdc-paginator-range-label {
+  font-size: 13px;
+  color: #666;
+  margin-right: 8px;
+  font-family: 'Figtree' !important;
+
+}
+
+/* Left side */
+.search-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1; /* <-- THIS makes left side grow and push the right side away */
+
+}
+
+/* Right side */
+.search-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.paginator-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Important for mobile responsiveness */
+  padding: 8px 16px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff;
+  gap: 10px;
+}
+
+
+
+
+.search-bar-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Figtree' !important;
+
+  margin-bottom: 20px;
+  gap: 15px; /* space between input and button */
+}
+
+
+
+
+
+
+
+/* --------------------------- */
+/* 📱 MOBILE RESPONSIVE PART  */
+/* --------------------------- */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px 15px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.4rem 0.8rem;
+      font-size: 14px;
+    }
+  }
+
+  .search-bar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .clear-button {
+    width: 100%;
+  }
+
+  button[mat-button] {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .table-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .mat-mdc-paginator-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .mat-mdc-paginator-page-size, 
+  .mat-mdc-paginator-range-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mat-mdc-paginator-page-size-label,
+  .mat-mdc-paginator-range-label {
+    font-size: 12px;
+  }
+
+  .mat-mdc-paginator-range-actions button {
+    font-size: 14px;
+  }
+
+  /* Smaller tables adjust */
+  .mat-mdc-table {
+    font-size: 13px;
+  }
+
+  /* Optional: Make table rows more compact on mobile */
+  .mat-mdc-row {
+    padding: 8px;
+  }
+
+  /* Optional: badge spans smaller */
+  span {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 20px;
+  }
+
+  .tabs button {
+    flex: 1 1 45%;
+  }
+
+  .search-bar-container {
+    gap: 8px;
+  }
+  
+}
+

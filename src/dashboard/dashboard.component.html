@@ -1,0 +1,136 @@
+<div class="dashboard-container">
+
+  <h1 class="page-title">Rozkazy</h1>
+
+  <div class="search-bar-container">
+    <div class="search-left">
+      <input type="text" placeholder="Szukaj..." [(ngModel)]="searchKey" (keyup)="applyFilter()" class="search-input" />
+      <button mat-button (click)="clearSearch()" class="clear-button">Wyczyść</button>
+    </div>
+  
+    <div class="search-right">
+      <button mat-button color="primary" (click)="openTabs()">Otwórz 10 kart</button>
+  
+      <button 
+        mat-raised-button 
+        color="accent" 
+        (click)="updateSelected()" 
+        *ngIf="!selection.isEmpty()" 
+        style="margin-left: 10px;">
+        {{ currentTab === 'active' ? 'Usuń' : 'Przywróć' }}
+      </button>
+    </div>
+  </div>
+  
+  
+
+
+ 
+
+ <!--  <div class="tabs">
+    <button [class.active]="currentTab === 'active'" (click)="changeTab('active')">
+      Aktywne ({{ activeCount }})
+    </button>
+    <button [class.active]="currentTab === 'removed'" (click)="changeTab('removed')">
+      Usunięte ({{ removedCount }})
+    </button>
+  </div> -->
+
+
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
+
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? masterToggle() : null"
+            [checked]="isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+
+      <!-- Other Columns -->
+      <ng-container matColumnDef="commandId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.commandId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="attackType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Typ Ataku</th>
+        <td mat-cell *matCellDef="let row">{{ row.attackType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="sendTimeMin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wysyłka Min</th>
+        <td mat-cell *matCellDef="let row">{{ row.sendTimeMin }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="sendTimeMax">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wysyłka Max</th>
+        <td mat-cell *matCellDef="let row">{{ row.sendTimeMax }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="arriveTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wejście</th>
+        <td mat-cell *matCellDef="let row">{{ row.arriveTime }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="source">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Z Wioski</th>
+        <td mat-cell *matCellDef="let row">{{ row.source }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="target">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cel</th>
+        <td mat-cell *matCellDef="let row">{{ row.target }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderPos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Kol</th>
+        <td mat-cell *matCellDef="let row">{{ row.orderPos }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderSnob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Kol Grube</th>
+        <td mat-cell *matCellDef="let row">{{ row.orderSnob }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef>URL</th>
+        <td mat-cell *matCellDef="let row">
+          <a [href]="row.url" target="_blank">
+            <button mat-button>Wyślij</button>
+          </a>
+        </td>
+      </ng-container>
+
+      <!-- Table Headers and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.late-row]="isLate(row.sendTimeMax)"
+        [class.too-early-row]="tooEarly(row.sendTime)" [class.disabled]="tooEarly(row.sendTimeMin)">
+      </tr>
+
+    </table>
+
+      <!-- Wrapper around Tabs and Paginator -->
+  <div class="paginator-wrapper">
+    <div class="tabs">
+      <button [class.active]="currentTab === 'active'" (click)="changeTab('active')">
+        Aktywne ({{ activeCount }})
+      </button>
+      <button [class.active]="currentTab === 'removed'" (click)="changeTab('removed')">
+        Usunięte ({{ removedCount }})
+      </button>
+    </div>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+</div>

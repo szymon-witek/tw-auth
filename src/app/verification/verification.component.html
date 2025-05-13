@@ -1,0 +1,33 @@
+<div class="verification-container">
+  <div class="verification-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label for="server">Wybierz serwer:</label>
+      <select id="server" formControlName="server">
+        <option [value]="null" disabled>-- wybierz --</option>
+        <option *ngFor="let s of servers" [value]="s">{{ s }}</option>
+      </select>
+
+      <div *ngIf="nicks.length > 0">
+        <label for="nick">Wybierz nick:</label>
+        <select id="nick" formControlName="nick">
+          <option *ngFor="let item of nicks" [value]="item.externalId">{{ item.nick }}</option>
+        </select>
+      </div>
+
+      <button type="submit" [disabled]="form.invalid || isLoading">Wygeneruj token</button>
+    </form>
+
+    <div *ngIf="statusMessage" [style.color]="isError ? 'red' : 'green'" style="margin-top: 1em;">
+      {{ statusMessage }}
+    </div>
+
+    <div *ngIf="token && !isError" style="margin-top: 1em;">
+      <p><strong>Token:</strong> {{ token }}</p>
+      <p>Wklej powyższy token do opisu swojego profilu na TribalWars i kliknij poniżej, aby zweryfikować.</p>
+      <button (click)="onVerify()" [disabled]="verifying">Zweryfikuj</button>
+
+      <p *ngIf="verificationSuccess" style="color: green;">✅ Weryfikacja zakończona sukcesem!</p>
+      <p *ngIf="verificationFailed" style="color: red;">❌ Token nie został znaleziony w opisie. Spróbuj ponownie.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  background: linear-gradient(to right, #0d1117, #1e3a8a);
+  font-family: 'Figtree' !important;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column; // ensure vertical stacking
+  flex: 1;
+  padding-top: 1rem;
+}
+
+::ng-deep .mat-form-field-label {
+  width: 100%;
+  text-align: center;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  gap: 1.5rem;
+  background: transparent;
+}
+
+// ---- Input Styling (Rounded, Colored) ----
+::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 40px !important;
+  background-color: #c99a5d !important;
+  overflow: hidden;
+}
+
+::ng-deep .mdc-notched-outline,
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border: none !important;
+  border-radius: 40px !important;
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+::ng-deep input.mat-mdc-input-element {
+  color: #5e4b2a;
+  font-weight: bold;
+  text-align: center;
+
+  &::placeholder {
+    color: #8e6e3f;
+  }
+}
+
+::ng-deep .mdc-floating-label {
+  display: none;
+}
+
+// ---- Button Styling ----
+button[mat-raised-button] {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 0.8rem 2rem;
+  transition: background 0.3s;
+  text-transform: uppercase;
+  font-family: 'Figtree' !important;
+
+  &:hover {
+    background-color: white;
+    color: #0f1e2e;
+  }
+}
+
+// ---- Heading & Layout ----
+.login-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+
+    span {
+      display: block;
+    }
+  }
+
+  .planner-text {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #c99a5d;
+    margin-top: 10px;
+  }
+}
+
+// ---- Responsive Styling for Mobile ----
+@media (max-width: 480px) {
+  :host {
+    height: auto;
+    padding: 2rem 1rem;
+  }
+
+  .form-container {
+    height: auto;
+    padding-top: 2rem;
+  }
+
+  form {
+    width: 100%;
+    max-width: 100%;
+    gap: 1rem;
+  }
+
+  .login-container h1 {
+    font-size: 2.5rem;
+  }
+
+  .planner-text {
+    font-size: 1rem;
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+    padding: 0.6rem 1.5rem;
+  }
+}

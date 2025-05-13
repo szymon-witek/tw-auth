@@ -1,0 +1,107 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #0d1117, #1e3a8a);
+    padding: 10px 20px;
+    height: 100px;
+    position: relative;
+    flex-wrap: wrap;
+  
+    .left-section,
+    .right-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .menu-icon {
+      font-size: 32px;
+      cursor: pointer;
+      display: none;
+    }
+  
+    .nav-links a,
+    .right-section a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-family: monospace;
+      letter-spacing: 2px;
+      transition: color 0.3s ease;
+      &:hover {
+        color: #cccccc;
+      }
+    }
+  
+    .center-logo img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+    }
+  
+    @media (max-width: 768px) {
+      .menu-icon {
+        font-size: 32px;
+        cursor: pointer;
+        display: block;
+        color: white; /* <-- Add this */
+      }
+  
+      .nav-links,
+      .right-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background: linear-gradient(to right, #0d1117, #1e3a8a);
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.5s ease, padding 0.5s ease;
+        padding: 0;
+      }
+  
+      .nav-links.active,
+      .right-section.active {
+        max-height: 500px; // enough space for links
+        padding: 10px 0;
+      }
+  
+      .center-logo {
+        flex: 1 0 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .nav-item {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .submenu a {
+    display: block;
+    padding: 8px 12px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .submenu a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  
