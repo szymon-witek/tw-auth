@@ -5,7 +5,6 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-verification',
   standalone: true,
@@ -14,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrl: './verification.component.scss',
 })
 export class VerificationComponent implements OnInit {
-    private apiUrl = environment.apiBaseUrl;
-  
+  private apiUrl = environment.apiBaseUrl;
+
   servers = [206, 210];
   nicks: { externalId: number; nick: string }[] = [];
   verifying = false;
@@ -27,7 +26,11 @@ export class VerificationComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.form = this.fb.group({
       server: [null],
       nick: [null],
@@ -86,18 +89,21 @@ export class VerificationComponent implements OnInit {
         next: (response: string) => {
           this.isLoading = false;
 
-          if (response.includes('Token already verified')) {
-            this.statusMessage = response;
+          if (response.startsWith('TOKEN_VERIFIED')) {
+            this.statusMessage = 'Token został już wcześniej zweryfikowany.';
             this.token = '';
             this.isError = false;
-          } else if (response.includes('A token is already pending')) {
-            this.statusMessage = response;
+          } else if (response.startsWith('TOKEN_PENDING')) {
+            const match = response.match(/Token:\s*(\w+)/);
+            this.token = match ? match[1] : '';
+            this.statusMessage = 'Token jest już oczekujący. Możesz go nadal użyć do weryfikacji.';
+            this.isError = false;
+          } else if (response.startsWith('TOKEN_EXPIRED')) {
+            this.statusMessage = 'Poprzedni token wygasł. Spróbuj ponownie.';
             this.token = '';
             this.isError = true;
-          } else if (response.includes('Add this code to your profile:')) {
-            this.token = response
-              .replace('Add this code to your profile: ', '')
-              .trim();
+          } else if (response.startsWith('TOKEN_CREATED')) {
+            this.token = response.replace('TOKEN_CREATED: Add this code to your profile: ', '').trim();
             this.statusMessage = 'Token wygenerowany pomyślnie.';
             this.isError = false;
           } else {
@@ -105,6 +111,7 @@ export class VerificationComponent implements OnInit {
             this.token = '';
             this.isError = true;
           }
+
         },
         error: (error) => {
           this.isLoading = false;
@@ -128,11 +135,9 @@ export class VerificationComponent implements OnInit {
       .set('externalId', this.form.value.nick);
 
     this.http
-      .post<{ verified: boolean }>(
-        this.apiUrl + '/verify/check',
-        null,
-        { params }
-      )
+      .post<{ verified: boolean }>(this.apiUrl + '/verify/check', null, {
+        params,
+      })
       .subscribe({
         next: (result) => {
           this.verifying = false;

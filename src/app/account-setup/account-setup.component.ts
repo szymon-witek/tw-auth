@@ -34,6 +34,7 @@ export class AccountSetupComponent implements OnInit {
     this.form = this.fb.group(
       {
         externalId: [''],
+        server: [''],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', Validators.required],
       },
@@ -48,6 +49,9 @@ export class AccountSetupComponent implements OnInit {
       const externalId = params['externalId'];
       if (externalId) {
         this.form.patchValue({ externalId });
+      }
+      if (server) {
+        this.form.patchValue({ server });
       }
       console.log('Server:', server, 'External ID:', externalId);
     });
@@ -65,20 +69,20 @@ export class AccountSetupComponent implements OnInit {
       return;
     }
 
-    const { externalId, password } = this.form.value;
+    const { externalId, password, server } = this.form.value;
 
-    this.createAccount(externalId, password);
+    this.createAccount(externalId, password, server);
   }
 
   redirectCountdown = 5;
   redirecting = false;
   countdownInterval: any;
 
-  createAccount(externalId: string, password: string): void {
+  createAccount(externalId: string, password: string, server: string): void {
     this.http
       .post(
         this.apiUrl + '/create-user',
-        { externalId, password },
+        { externalId, password, server },
         { responseType: 'text' as const }
       )
       .subscribe({

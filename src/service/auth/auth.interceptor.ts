@@ -17,7 +17,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(cloned).pipe(
     catchError((error) => {
-      if (error.status === 401) {
+      if (error.status === 401 && authService.isLoggedIn()) {
         return authService.refreshAccessToken().pipe(
           switchMap(() => {
             const newToken = authService.token;
